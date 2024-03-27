@@ -6,27 +6,21 @@ body {
     background-color: rgb(103 136 107 / 35%);
 }
 
-#wrapper {
-    display:block;
-    position:relative;
-    padding:35px;
-    margin:35px;
-    width:80%;
-    height:auto;
-    background:#fff;
-}
-
 #circle-of-fifths {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    width: 700px;
-    height: 700px;
-    margin: 120px auto;
+    width: 600px;
+    height: 600px;
+    padding: 30px 50px;
+    margin-top: 90px;
+    left: 30px;
+    right: auto;
     border-radius: 50%;
     background-color: #243326;
-    box-shadow: 0px 0px 10px 4px #ccc;
+    box-shadow: 1px 5px 6px 6px #ccc;
+    flex-direction: column;
 }
 
 
