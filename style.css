@@ -2,6 +2,8 @@ body {
     display:block;
     margin:0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    background-color: rgb(103 136 107 / 35%);
 }
 
 
@@ -33,7 +35,7 @@ body {
   height: 65vh;
   margin: 90px auto;
   border-radius: 50%;
-  background-color: #CC9B06;
+  background-color: #243326;
   box-shadow: 0px 0px 10px 4px #ccc;
 }
 
@@ -56,7 +58,6 @@ body {
     text-align: center;
     line-height: 100px;
     font-size: 1.4rem;
-    font-weight: bold;
     box-shadow: 0px 0px 5px 1px #4c4c4c;
   }
   
@@ -67,23 +68,27 @@ body {
     text-align: center;
     line-height: 50px;
     font-size: 1.4rem;
-    font-weight: bold;
     background-color: #1785B3;
     color: #fff;
   }
   
   .chord-list {
-      font-size: 1.4rem;
-      text-align: center;
-      width: 25vh;
-      flex-wrap: wrap;
-      color:#fff;
+    display: flex;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 25vh;
+    flex-wrap: nowrap;
+    color: #fff;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   h2.chord-list {
     text-align:center;
-    font-size:1.8rem;
+    font-size:1.7rem;
     font-variant:small-caps;
+    text-decoration-line: overline;
+    letter-spacing: 0.2rem;
   }
 
   .hidden {
@@ -91,12 +96,12 @@ body {
   }
     
   .major {
-      background-color: #ffc107;
+      background-color: #63CC06;
       color: #fff;
     }
   
   .minor {
-      background-color: #1785B3;
+      background-color: #2B7739;
       color: #fff;
       font-size:1rem;
     }
