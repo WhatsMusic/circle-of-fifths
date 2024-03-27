@@ -4,6 +4,16 @@ body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+.main {
+  position:relative;
+  display:inline;
+
+  width:80vw;
+  left:auto;
+  right:auto;
+}
+
 #wrapper {
     display:block;
     position:relative;
@@ -19,9 +29,9 @@ body {
   display: flex;
   justify-content: center; /* center the children horizontally */
   align-items: center; /* center the children vertically */
-  width: 680px;
-  height: 680px;
-  margin: 120px auto;
+  width: 65vh;
+  height: 65vh;
+  margin: 90px auto;
   border-radius: 50%;
   background-color: #CC9B06;
   box-shadow: 0px 0px 10px 4px #ccc;
@@ -31,21 +41,21 @@ body {
 
 .key, .chord {
     position: absolute;
-    top: 40%; /* position from the center */
-    left: 40%; /* position from the center */
+    top: 42%; /* position from the center */
+    left: 41.5%; /* position from the center */
     transform: translate(-50%, -50%); /* center the element itself */
     cursor: pointer;
     box-shadow: #999;
   }
   
   .key {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     transform-origin: bottom center;
     border-radius: 50%;
     text-align: center;
-    line-height: 120px;
-    font-size: 24px;
+    line-height: 100px;
+    font-size: 1.4rem;
     font-weight: bold;
     box-shadow: 0px 0px 5px 1px #4c4c4c;
   }
@@ -55,20 +65,25 @@ body {
     height: 50px;
     border-radius: 50%;
     text-align: center;
-    line-height: 70px;
-    font-size: 16px;
+    line-height: 50px;
+    font-size: 1.4rem;
     font-weight: bold;
     background-color: #1785B3;
     color: #fff;
   }
   
   .chord-list {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       text-align: center;
-      width: 35%;
-      display: inline-flex;
+      width: 25vh;
       flex-wrap: wrap;
       color:#fff;
+  }
+
+  h2.chord-list {
+    text-align:center;
+    font-size:1.8rem;
+    font-variant:small-caps;
   }
 
   .hidden {
@@ -83,6 +98,7 @@ body {
   .minor {
       background-color: #1785B3;
       color: #fff;
+      font-size:1rem;
     }
     
   .highlight {

@@ -1,3 +1,11 @@
+function initializeDefaultContent() {
+  const defaultH2Element = document.createElement("h2");
+  defaultH2Element.textContent = "Circle of Fifths";
+  defaultH2Element.classList.add("chord-list"); // Die gleiche Klasse für Konsistenz
+  circle.appendChild(defaultH2Element); // Füge es dem Kreis hinzu
+}
+
+
 const keys = [
     { name: "A", chords: ["A", "Amaj7", "Bm", "Bm7", "C#m", "C#m7", "D", "Dmaj7", "E", "E7", "F#m", "F#m7", "G#dim"]},
     { name: "E", chords: ["E", "Emaj7", "F#m", "F#m7", "G#m", "G#m7", "A", "Amaj7", "B", "B7", "C#m", "C#m7", "D#dim"]},
@@ -44,12 +52,22 @@ for (let i = 0; i < mKeys.length; i++) {
   
     minorDiv.style.transform = `rotate(${(i + 1) * (360 / keys.length)}deg) translate(220px) rotate(${-((i + 1) * (360 / keys.length))}deg)`;
   
-    minorDiv.addEventListener("click", () => {
-      highlightKey(minorDiv);
-      highlightChords(key.chords.map(chord => chord ));
-      previousKey = key.name;
+    // Beispiel für das Hinzufügen von Event-Listenern zu einem Moll-Key
+minorDiv.addEventListener("click", () => {
+  if (previousKey === key.name) {
+    // Wenn der bereits ausgewählte Key erneut angeklickt wird (deselektieren)
+    highlightKey(null); // Entfernt die Hervorhebung von allen Keys
+    highlightChords([], ''); // Zeigt den Standard `<h2>` Tag an
+    previousKey = ''; // Setzt previousKey zurück, da kein Key ausgewählt ist
+  } else {
+    // Ein neuer Key wurde ausgewählt
+    highlightKey(minorDiv); // Hervorheben des neuen Keys
+    highlightChords(key.chords, key.name); // Zeigt die Akkorde des ausgewählten Keys an
+    previousKey = key.name; // Aktualisiert previousKey mit dem neu ausgewählten Key
+  }
+});
 
-    });
+    
   
     
     circle.appendChild(minorDiv);
@@ -70,13 +88,21 @@ for (let i = 0; i < keys.length; i++) {
     majorDiv.style.transform = `rotate(${i * (360 / keys.length)}deg) translate(340px) rotate(${-i * (360 / keys.length)}deg)`;
   
   
-    majorDiv.addEventListener("click", () => {
-      highlightKey(majorDiv);
-      highlightChords(key.chords);
-      previousKey = key.name;
+    // Beispiel für das Hinzufügen eines Event-Listeners zu einem Key
+// Beispiel für einen Event-Listener
+majorDiv.addEventListener("click", () => {
+  if (previousKey === key.name) {
+    // Deselektieren des Keys
+    highlightKey(null);
+    highlightChords([], '');
+  } else {
+    // Neuer Key ausgewählt
+    highlightKey(majorDiv);
+    highlightChords(key.chords, key.name);
+  }
+});
 
 
-    });
   
     
   
@@ -84,42 +110,56 @@ for (let i = 0; i < keys.length; i++) {
    
   }
 
-function highlightKey(keyDiv) {
-  const keys = document.querySelectorAll(".key");
-
-  keys.forEach(key => {
-    key.classList.remove("highlight");
-  });
-
-  keyDiv.classList.add("highlight");
-}
+  initializeDefaultContent();
 
 
-
-function highlightChords(chords) {
-  // Remove existing .chord-list element if any
-  const existingChordList = document.querySelector(".chord-list");
-  if (existingChordList) {
-
-    existingChordList.parentNode.removeChild(existingChordList);
-    // If same key clicked again, don't append new list
-    if (previousKey === chords[0]) {
-      return;
+  function highlightKey(keyDiv) {
+    const keys = document.querySelectorAll(".key");
+    keys.forEach(key => {
+      key.classList.remove("highlight");
+    });
+  
+    if (keyDiv) {
+      keyDiv.classList.add("highlight");
     }
-    
   }
+  
 
-  // Create new .chord-list element with comma-separated chords
-  const chordsText = chords.join(", ");
-  const chordsDiv = document.createElement("div");
-  chordsDiv.textContent = "Chords: " + chordsText;
-  chordsDiv.classList.add("chord-list");
 
-  circle.appendChild(chordsDiv); // Append new .chord-list element to #circle-of-fifths element
 
-  // Store current chord as previous key
-  previousKey = chords[0];
-}
+  function highlightChords(chords, keyName) {
+    // Remove existing .chord-list element if any
+    const existingChordList = document.querySelector(".chord-list");
+    if (existingChordList) {
+      existingChordList.parentNode.removeChild(existingChordList);
+    }
+  
+    // Check if the keyName is empty, indicating deselection
+    if (keyName === '') {
+      // Show the default "Circle of Fifths" heading
+      const h2Element = document.createElement("h2");
+      h2Element.textContent = "Circle of Fifths";
+      h2Element.classList.add("chord-list");
+      document.querySelector("#circle-of-fifths").appendChild(h2Element);
+    } else if (chords.length > 0) {
+      // If chords are present, display them
+      const chordsDiv = document.createElement("div");
+      chordsDiv.textContent = "Chords: " + chords.join(", ");
+      chordsDiv.classList.add("chord-list");
+      document.querySelector("#circle-of-fifths").appendChild(chordsDiv);
+    } else {
+      // This else part may not be necessary if we never have a case where chords are empty but a key is selected
+      // However, if needed, it can handle unexpected states or future modifications
+      const h2Element = document.createElement("h2");
+      h2Element.textContent = "No chords available";
+      h2Element.classList.add("chord-list");
+      document.querySelector("#circle-of-fifths").appendChild(h2Element);
+    }
+  
+    // Update the previous key based on current interaction
+    previousKey = keyName;
+  }
+  
 
 
 
